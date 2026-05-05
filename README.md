@@ -132,7 +132,7 @@ Always consult a qualified healthcare provider for medical decisions.
 
 ## 👤 Author
 
-**Tejashree Ashok Zungure**  
-📧 tejashreezungure947@gmail.com  
-📍 Warananagre, Kolhapur, Maharashtra — 416205  
-📞 +91 7645677753
+**Radhika Nitin Chavan**  
+📧 radhachavan286@gmail.com  
+📍 Kameri, Ishwarpur, Maharashtra — 415403  
+📞 +91 9130720260
