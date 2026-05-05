@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>FetalAI : Fetal Health Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+    <div class="nav-brand">
+        <span class="brand-icon">♡</span>
+        <span class="brand-name">Fetal Health</span>
+    </div>
+    <ul class="nav-links">
+        <li><a href="#about"   class="nav-link">About</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+        <li><a href="#predict" class="nav-link nav-cta">Predict</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+    <div class="hero-bg">
+        <div class="hero-blob blob1"></div>
+        <div class="hero-blob blob2"></div>
+        <div class="hero-blob blob3"></div>
+    </div>
+    <div class="hero-content">
+        <div class="hero-badge">
+            <span class="pulse-dot"></span>
+            AI-Powered Fetal Monitoring
+        </div>
+        <h1 class="hero-title">
+            Predict and Monitor<br/>
+            <span class="gradient-text">Fetal Health</span>
+        </h1>
+        <p class="hero-subtitle">
+            Using Machine Learning to Predict and Monitor Fetal Health with
+            Cardiotocogram (CTG) data — empowering healthcare professionals to act early.
+        </p>
+        <div class="hero-actions">
+            <a href="#predict" class="btn btn-primary"><i class="fas fa-heartbeat"></i> Start Prediction</a>
+            <a href="#about"   class="btn btn-outline">Learn More</a>
+        </div>
+        <div class="hero-stats">
+            <div class="stat"><span class="stat-num">3</span><span class="stat-label">Health Classes</span></div>
+            <div class="stat"><span class="stat-num">95%+</span><span class="stat-label">Model Accuracy</span></div>
+            <div class="stat"><span class="stat-num">8</span><span class="stat-label">CTG Features</span></div>
+        </div>
+    </div>
+    <div class="hero-visual">
+    <div class="hero-image-box">
+        <img src="{{ url_for('static', filename='fetal.png') }}" 
+             alt="Fetal Baby"
+             class="hero-image">
+    </div>
+</div>        
+        </div>
+    </div>
+    <a href="#about" class="scroll-arrow"><i class="fas fa-chevron-down"></i></a>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">About</span>
+            <h2 class="section-title">Why Fetal Health Monitoring Matters</h2>
+        </div>
+        <div class="about-grid">
+            <div class="about-visual">
+                <div class="about-image-wrap">
+                    <div class="image-placeholder">
+         <img src="{{ url_for('static', filename='fetal.png') }}" alt="Fetal Health"  style="width:100%; height:100%; object-fit:cover; border-radius:20px;"/>
+        </div>
+                    <div class="floating-badge badge-top"><i class="fas fa-shield-alt"></i> 94% Preventable</div>
+                    <div class="floating-badge badge-bottom"><i class="fas fa-globe"></i> UN SDG Aligned</div>
+                </div>
+            </div>
+            <div class="about-text">
+                <p class="about-lead">Reduction of child mortality is reflected in several of the United Nations' Sustainable Development Goals and is a key indicator of human progress.</p>
+                <p>The UN expects that by 2030, countries will end preventable deaths of newborns and children under 5, aiming to reduce under-5 mortality to at least <strong>25 per 1,000 live births</strong>.</p>
+                <p>Maternal mortality accounts for <strong>295,000 deaths</strong> during and following pregnancy and childbirth (as of 2017). The vast majority (94%) occurred in low-resource settings.</p>
+                <p><strong>Cardiotocograms (CTGs)</strong> are a simple, cost-accessible option to assess fetal health, shedding light on Fetal Heart Rate (FHR), fetal movements, uterine contractions, and more.</p>
+                <div class="about-classes">
+                    <div class="class-badge normal">      <i class="fas fa-check-circle"></i> Normal</div>
+                    <div class="class-badge suspect">     <i class="fas fa-exclamation-circle"></i> Suspect</div>
+                    <div class="class-badge pathological"><i class="fas fa-times-circle"></i> Pathological</div>
+                </div>
+            </div>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-wave-square"></i></div>
+                <h3>Fetal Heart Rate</h3>
+                <p>Monitor baseline FHR and variability patterns to detect anomalies early.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                <h3>Accelerations &amp; Decelerations</h3>
+                <p>Analyze acceleration counts and prolonged deceleration episodes.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-robot"></i></div>
+                <h3>Random Forest ML</h3>
+                <p>Powered by an ensemble Random Forest classifier trained on real CTG data.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-tachometer-alt"></i></div>
+                <h3>Instant Results</h3>
+                <p>Get prediction results with confidence scores in real time.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PREDICT -->
+<section class="predict-section" id="predict">
+    <div class="container">
+
+        <div class="section-header light">
+            <span class="section-tag">Prediction</span>
+            <h2 class="section-title">Predict Fetal Health</h2>
+            <p class="section-sub">Enter the CTG parameters below to classify fetal health status.</p>
+        </div>
+
+        {% if error %}
+        <div class="error-box">
+            <i class="fas fa-exclamation-triangle"></i>
+            <span>{{ error }} — Please check your inputs.</span>
+        </div>
+        {% endif %}
+
+        <!-- ✅ FORM CARD — -->
+        <div class="predict-card">
+            <form action="/predict" method="POST" class="predict-form">
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="accelerations">
+                            <i class="fas fa-arrow-up"></i> Accelerations
+                            <span class="tooltip" data-tip="Number of accelerations per second">?</span>
+                        </label>
+                        <input type="number" step="any" id="accelerations" name="accelerations"
+                               placeholder="e.g. 0.003"
+                               value="{{ accelerations if accelerations is defined else '' }}" required/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="prolongued_decelerations">
+                            <i class="fas fa-arrow-down"></i> Prolongued Decelerations
+                            <span class="tooltip" data-tip="Number of prolonged decelerations per second">?</span>
+                        </label>
+                        <input type="number" step="any" id="prolongued_decelerations" name="prolongued_decelerations"
+                               placeholder="e.g. 0.001"
+                               value="{{ prolongued_decelerations if prolongued_decelerations is defined else '' }}" required/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="abnormal_short_term_variability">
+                            <i class="fas fa-wave-square"></i> Abnormal Short Term Variability
+                            <span class="tooltip" data-tip="Percentage of time with abnormal short term variability">?</span>
+                        </label>
+                        <input type="number" step="any" id="abnormal_short_term_variability" name="abnormal_short_term_variability"
+                               placeholder="e.g. 48"
+                               value="{{ abnormal_short_term_variability if abnormal_short_term_variability is defined else '' }}" required/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="percentage_of_time_with_abnormal_long_term_variability">
+                            <i class="fas fa-clock"></i> % Time with Abnormal Long Term Variability
+                            <span class="tooltip" data-tip="Percentage of time with abnormal long term variability">?</span>
+                        </label>
+                        <input type="number" step="any" id="percentage_of_time_with_abnormal_long_term_variability"
+                               name="percentage_of_time_with_abnormal_long_term_variability"
+                               placeholder="e.g. 0"
+                               value="{{ percentage_of_time_with_abnormal_long_term_variability if percentage_of_time_with_abnormal_long_term_variability is defined else '' }}" required/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mean_value_of_long_term_variability">
+                            <i class="fas fa-chart-bar"></i> Mean Value of Long Term Variability
+                            <span class="tooltip" data-tip="Mean value of long term variability in the CTG">?</span>
+                        </label>
+                        <input type="number" step="any" id="mean_value_of_long_term_variability" name="mean_value_of_long_term_variability"
+                               placeholder="e.g. 5"
+                               value="{{ mean_value_of_long_term_variability if mean_value_of_long_term_variability is defined else '' }}" required/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="histogram_mode">
+                            <i class="fas fa-align-center"></i> Histogram Mode
+                            <span class="tooltip" data-tip="Mode of the FHR histogram">?</span>
+                        </label>
+                        <input type="number" step="any" id="histogram_mode" name="histogram_mode"
+                               placeholder="e.g. 120"
+                               value="{{ histogram_mode if histogram_mode is defined else '' }}" required/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="histogram_median">
+                            <i class="fas fa-minus"></i> Histogram Median
+                            <span class="tooltip" data-tip="Median of the FHR histogram">?</span>
+                        </label>
+                        <input type="number" step="any" id="histogram_median" name="histogram_median"
+                               placeholder="e.g. 121"
+                               value="{{ histogram_median if histogram_median is defined else '' }}" required/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="histogram_variance">
+                            <i class="fas fa-expand-alt"></i> Histogram Variance
+                            <span class="tooltip" data-tip="Variance of the FHR histogram">?</span>
+                        </label>
+                        <input type="number" step="any" id="histogram_variance" name="histogram_variance"
+                               placeholder="e.g. 73"
+                               value="{{ histogram_variance if histogram_variance is defined else '' }}" required/>
+                    </div>
+
+                </div>
+                <div class="form-actions">
+                    <button type="reset" class="btn btn-ghost"><i class="fas fa-undo"></i> Clear</button>
+                    <button type="submit" class="btn btn-primary btn-large">
+                        <i class="fas fa-heartbeat"></i> Predict Fetal Health
+                    </button>
+                </div>
+            </form>
+        </div>
+        
+        {% if show_result %}
+        <div class="result-box {{ color }}" id="result-box">
+            <div class="rb-icon">{{ icon }}</div>
+            <div class="rb-body">
+                <div class="rb-title">Prediction: {{ prediction }}</div>
+                <div class="rb-desc">{{ description }}</div>
+                <span class="rb-conf">Confidence: {{ confidence }}%</span>
+                <div class="rb-track">
+                    <div class="rb-fill" style="width:{{ confidence }}%;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Auto scroll to result -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var el = document.getElementById('result-box');
+                if (el) {
+                    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+        </script>
+        {% endif %}
+
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Contact</span>
+            <h2 class="section-title">Contact Us</h2>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <div>
+                        <h4>Location</h4>
+                        <p>S/O: Tejashree Ashok Zungure, At/Post Warananagar,<br/>Kolhapur, Maharashtra 416205</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                    <div>
+                        <h4>Email</h4>
+                        <p><a href="mailto:tejashreezungure@gmail.com">tejashreezungure@gmail.com</a></p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                    <div>
+                        <h4>Call</h4>
+                        <p><a href="tel:+919446543210">+91 9446543210</a></p>
+                    </div>
+                </div>
+            </div>
+            <form class="contact-form" id="contactForm" onsubmit="handleContactSubmit(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" placeholder="Tejashree Zungure" required/>
+                    </div>
+                    <div class="form-group">
+                        <label>Your Email</label>
+                        <input type="email" placeholder="you@example.com" required/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Subject</label>
+                    <input type="text" placeholder="Regarding Fetal Health Prediction" required/>
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea rows="5" placeholder="Write your message here..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-paper-plane"></i> Send Message
+                </button>
+                <div class="contact-success" id="contactSuccess" style="display:none;">
+                    <i class="fas fa-check-circle"></i> Thank You! Message sent successfully.
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <span class="brand-icon">♡</span>
+                <span>Fetal Health AI</span>
+            </div>
+            <p>Built with ❤️ using Flask &amp; Random Forest | For educational and research purposes only.</p>
+            <p class="footer-disclaimer">⚠️ This tool is not a substitute for professional medical advice. Always consult a qualified healthcare provider.</p>
+        </div>
+    </div>
+</footer>
+
+<a href="#home" class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></a>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
